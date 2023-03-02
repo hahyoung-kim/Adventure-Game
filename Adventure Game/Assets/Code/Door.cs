@@ -22,5 +22,19 @@ public class Door : MonoBehaviour
             }
             
         }
+        //load victory scene
+        if(SceneManager.GetActiveScene().name == "Level3"){
+            if (other.gameObject.CompareTag("Player"))
+            {
+                if(!locked){
+                    SceneManager.LoadScene(levelToLoad);
+                }
+                else if(PublicVars.hasKey[keyNum]){
+                    PublicVars.hasKey[keyNum] = false;
+                    SceneManager.LoadScene(levelToLoad);
+                }
+                
+            }
+        }
     }
 }
