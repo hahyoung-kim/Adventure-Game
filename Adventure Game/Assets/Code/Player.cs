@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     public Transform spawnPoint5;
     public Transform spawnPoint6;
     public GameObject bulletPrefab;
+    public string levelToLoad;
 
 
     void Start()
@@ -76,8 +77,16 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("Key"))
         {
-            PublicVars.playcatcalls = false;
-            stop_playing = true;
+            if (levelToLoad == "level5" || levelToLoad == "victory") {
+                if (PublicVars.hasKey[0] == true && PublicVars.hasKey[1] == true) {
+                    PublicVars.playcatcalls = false;
+                    stop_playing = true;
+                }
+            }
+            else {
+                stop_playing = true;
+                PublicVars.playcatcalls = false;
+            }
             // ALL keys must be named 'key' and a num ("Key0")
             int keyNum = Int32.Parse(other.name.Substring(3));
             Destroy(other.gameObject);
