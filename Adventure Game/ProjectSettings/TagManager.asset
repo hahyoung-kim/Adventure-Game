@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Key
   - Enemy
+  - Yarn
   layers:
   - Default
   - TransparentFX
