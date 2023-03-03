@@ -236,7 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 4383068259139751933}
-  Player: {fileID: 0}
+  Player: {fileID: 3828734321334263499, guid: 11b68c8226620354c9c45d53856ce160, type: 3}
 --- !u!54 &8786797056957823654
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -365,12 +365,24 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: 81ce4a7ffd46313429701ca47e11a638, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400012, guid: 81ce4a7ffd46313429701ca47e11a638, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400012, guid: 81ce4a7ffd46313429701ca47e11a638, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400012, guid: 81ce4a7ffd46313429701ca47e11a638, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: 81ce4a7ffd46313429701ca47e11a638, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: 81ce4a7ffd46313429701ca47e11a638, type: 3}
       propertyPath: m_LocalPosition.z
