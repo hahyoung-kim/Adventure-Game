@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 4940082744765861819}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -195,9 +195,9 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8269301729873247771}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0.7
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -210,7 +210,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 8269301729873247771}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.2
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -236,7 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 6969486837858930471}
-  Player: {fileID: 0}
+  Player: {fileID: 3828734321334263499, guid: 11b68c8226620354c9c45d53856ce160, type: 3}
 --- !u!54 &2709943631492168316
 Rigidbody:
   m_ObjectHideFlags: 0
