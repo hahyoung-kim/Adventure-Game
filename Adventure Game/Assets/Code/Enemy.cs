@@ -5,22 +5,51 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
-public class Enemy : MonoBehaviour
-{
+public class Enemy : MonoBehaviour {
     public NavMeshAgent enemy;
-    public Transform Player;
+    public string enemytype;
+    AudioSource _audiosource;
+    public AudioClip dogwhimper;
+    public AudioClip dogbark;
+    public AudioClip lionroar;
+    public AudioClip lionwhimper;
+    MeshRenderer _renderer;
+    GameObject player;
+    Color origcolor;
+    bool move = true;
+    bool playbark = true;
+    bool playroar = true;
 
     // Start is called before the first frame update
     void Start()
     {
         enemy = GetComponent<NavMeshAgent>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        _audiosource = GetComponent<AudioSource>();
+        _renderer = GetComponent<MeshRenderer>();
+        origcolor = _renderer.material.color;
+        StartCoroutine(ChasePlayer());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        enemy.SetDestination(Player.position);
-    }
+    IEnumerator ChasePlayer(){
+        while (true) {
+        yield return new WaitForSeconds(1);
+        if (move) {
+        enemy.destination = player.transform.position;
+        yield return new WaitForSeconds(1);
+        if (enemytype == "dog") {
+            if(playbark) {
+            _audiosource.PlayOneShot(dogbark);
+            }
+            }
+        else if (enemytype == "lion") {
+            if(playroar) {
+            _audiosource.PlayOneShot(lionroar);
+            }
+        }
+        }
+        }}
+    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -28,5 +57,34 @@ public class Enemy : MonoBehaviour
         {
             SceneManager.LoadScene("GameOver");
         }
+        if (other.CompareTag("Yarn"))
+        {
+            if (enemytype == "dog") {
+            playbark = false;
+            _audiosource.PlayOneShot(dogwhimper);
+            }
+            else if (enemytype == "lion") {
+                playroar = false;
+                _audiosource.PlayOneShot(lionwhimper);
+            }
+            // StartCoroutine(FlashRed());
+            StartCoroutine(Stop());
+        }
     }
+    IEnumerator Stop(){
+        move = false;
+        yield return new WaitForSeconds(1);
+        move = true;
+        if(enemytype == "dog") {
+        playbark = true;
+        }
+        else if (enemytype == "lion") {
+            playroar = true;
+        }
+        }
+    // IEnumerator FlashRed(){
+    //     _renderer.material.color = Color.red;
+    //     yield return new WaitForSeconds(5);
+    //     _renderer.material.color = origcolor;
+    //     }
 }
