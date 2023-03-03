@@ -11,7 +11,12 @@ public class Player : MonoBehaviour
     AudioSource _audiosource;
     public AudioClip smallcatcall;
     public AudioClip bigcatcall;
+    public AudioClip shootSound;
     bool stop_playing = false;
+    int bulletSpeed = 5;
+    public Transform spawnPoint;
+    public GameObject bulletPrefab;
+
 
     void Start()
     {
@@ -21,7 +26,7 @@ public class Player : MonoBehaviour
        StartCoroutine(Catcalls());
     }
 
-    // Update is called once per frame
+    // Update is called once per frameo
     void Update()
     {
         // left click, 1 = right click
@@ -32,6 +37,14 @@ public class Player : MonoBehaviour
             {
                 print(hit.point);
                 _newMeshAgent.destination = hit.point;
+            }
+        }
+        if(Input.GetButtonDown("Jump")){
+            if(PublicVars.shootingActivated) {
+            _audiosource.PlayOneShot(shootSound);
+            GameObject newBullet = Instantiate(bulletPrefab, spawnPoint.position, spawnPoint.rotation);
+            newBullet.GetComponent<Rigidbody>().velocity = spawnPoint.forward * bulletSpeed;
+            // Destroy(newBullet, 3);
             }
         }
     }
