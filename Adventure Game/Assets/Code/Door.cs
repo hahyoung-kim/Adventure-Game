@@ -8,11 +8,31 @@ public class Door : MonoBehaviour
 
     int keyNum = 0;
     public string levelToLoad;
+    bool canopen = true;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            if (levelToLoad == "level5" || levelToLoad == "victory") {
+                if(!locked){
+                SceneManager.LoadScene(levelToLoad);
+            }
+                for(int i = 0; i < 2; i++) {
+                    print(PublicVars.hasKey[i]);
+                    if(PublicVars.hasKey[i] == false){
+                        canopen = false;
+                    }
+                }
+                print(canopen);
+                if (canopen) {
+                    for(int i = 0; i < 2; i++) {
+                        PublicVars.hasKey[i] = false;
+                        SceneManager.LoadScene(levelToLoad);
+                }
+                }
+            }
+            else {
             if(!locked){
                 SceneManager.LoadScene(levelToLoad);
             }
@@ -22,19 +42,5 @@ public class Door : MonoBehaviour
             }
             
         }
-        //load victory scene
-        if(SceneManager.GetActiveScene().name == "Level3"){
-            if (other.gameObject.CompareTag("Player"))
-            {
-                if(!locked){
-                    SceneManager.LoadScene(levelToLoad);
-                }
-                else if(PublicVars.hasKey[keyNum]){
-                    PublicVars.hasKey[keyNum] = false;
-                    SceneManager.LoadScene(levelToLoad);
-                }
-                
-            }
         }
-    }
-}
+}}
