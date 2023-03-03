@@ -19957,6 +19957,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 7149930038407543926, guid: 150b92f9cf243c54187483b0b6c89a6a, type: 3}
+      propertyPath: enemytype
+      value: dog
+      objectReference: {fileID: 0}
     - target: {fileID: 8615461546635488455, guid: 150b92f9cf243c54187483b0b6c89a6a, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -20010,6 +20014,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1554774213}
     m_Modifications:
+    - target: {fileID: 973494149644570488, guid: dd458ad8fd869984382a46ae181c7aac, type: 3}
+      propertyPath: levelToLoad
+      value: level3
+      objectReference: {fileID: 0}
     - target: {fileID: 973494149644570491, guid: dd458ad8fd869984382a46ae181c7aac, type: 3}
       propertyPath: m_RootOrder
       value: 1
