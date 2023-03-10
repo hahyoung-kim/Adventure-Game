@@ -11,6 +11,7 @@ TagManager:
   - CatHeart1
   - CatHeart2
   - CatHeart3
+  - BigLion
   layers:
   - Default
   - TransparentFX
