@@ -33,22 +33,25 @@ public class Enemy : MonoBehaviour {
 
     IEnumerator ChasePlayer(){
         while (true) {
-        yield return new WaitForSeconds(1);
-        if (move) {
-        enemy.destination = player.transform.position;
-        yield return new WaitForSeconds(1);
-        if (enemytype == "dog") {
-            if(playbark) {
-            _audiosource.PlayOneShot(dogbark);
-            }
-            }
-        else if (enemytype == "lion") {
-            if(playroar) {
-            _audiosource.PlayOneShot(lionroar);
+            //yield return new WaitForSeconds(1);
+            if (move) {
+                if (Vector3.Distance(player.transform.position, transform.position) < 15) {
+                    enemy.destination = player.transform.position;
+                }
+                yield return new WaitForSeconds(3);
+                if (enemytype == "dog") {
+                    if(playbark) {
+                        _audiosource.PlayOneShot(dogbark);
+                    }
+                }
+                else if (enemytype == "lion") {
+                    if(playroar) {
+                        _audiosource.PlayOneShot(lionroar);
+                    }
+                }
             }
         }
-        }
-        }}
+    }
     
 
     private void OnTriggerEnter(Collider other)
@@ -57,11 +60,15 @@ public class Enemy : MonoBehaviour {
         {
             // SceneManager.LoadScene("GameOver");
         }
+        if (other.CompareTag("Fence"))
+        {
+            Destroy(other);
+        }
         if (other.CompareTag("Yarn"))
         {
             if (enemytype == "dog") {
-            playbark = false;
-            _audiosource.PlayOneShot(dogwhimper);
+                playbark = false;
+                _audiosource.PlayOneShot(dogwhimper);
             }
             else if (enemytype == "lion") {
                 playroar = false;
@@ -71,17 +78,19 @@ public class Enemy : MonoBehaviour {
             StartCoroutine(Stop());
         }
     }
+
     IEnumerator Stop(){
         move = false;
         yield return new WaitForSeconds(1);
         move = true;
         if(enemytype == "dog") {
-        playbark = true;
+            playbark = true;
         }
         else if (enemytype == "lion") {
             playroar = true;
         }
-        }
+    }
+
     // IEnumerator FlashRed(){
     //     _renderer.material.color = Color.red;
     //     yield return new WaitForSeconds(5);
