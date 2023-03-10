@@ -6,8 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public TextMeshProUGUI scoreUI;
+    public TextMeshProUGUI yarnCollectibles;
 
+    int score = 0;
     private void Awake() {
         // Don't Destroy on Load
         if(GameObject.FindObjectsOfType<GameManager>().Length > 1) {
@@ -20,11 +21,23 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // scoreUI.text = "SCORE: " + score;
+        yarnCollectibles.text = ": " + score;
+        GameObject.FindGameObjectWithTag("score").GetComponent<TextMeshProUGUI>().text = ": " + score;
+    }
+    public void resetScore(){
+        score = 0;
+    }
+    public int getScore(){
+        return score;
+    }
+    public void AddYarn() {
+        score += 1;
+        GameObject.FindGameObjectWithTag("score").GetComponent<TextMeshProUGUI>().text = ": " + score;
     }
     // Update is called once per frame
     void Update()
     {
+        
 #if !UNITY_WEBGL
         // Esc to Exit
         if(Input.GetKeyDown(KeyCode.Escape))
