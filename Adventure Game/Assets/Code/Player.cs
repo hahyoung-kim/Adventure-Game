@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         _newMeshAgent = GetComponent<NavMeshAgent>();
+        PublicVars.playcatcalls = true;
+        
         mainCam = Camera.main;
        _audiosource = GetComponent<AudioSource>();
        StartCoroutine(Catcalls());
