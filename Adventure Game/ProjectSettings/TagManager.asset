@@ -7,6 +7,9 @@ TagManager:
   - Key
   - Enemy
   - Yarn
+  - CatHeart1
+  - CatHeart2
+  - CatHeart3
   layers:
   - Default
   - TransparentFX

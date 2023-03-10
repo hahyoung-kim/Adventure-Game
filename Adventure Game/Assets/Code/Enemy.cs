@@ -55,7 +55,7 @@ public class Enemy : MonoBehaviour {
     {
         if (other.CompareTag("Player"))
         {
-            SceneManager.LoadScene("GameOver");
+            // SceneManager.LoadScene("GameOver");
         }
         if (other.CompareTag("Yarn"))
         {
