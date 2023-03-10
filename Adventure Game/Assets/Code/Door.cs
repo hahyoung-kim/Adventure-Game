@@ -14,7 +14,7 @@ public class Door : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if (levelToLoad == "level5" || levelToLoad == "victory") {
+            if (levelToLoad == "victory") {
                 if(!locked){
                 SceneManager.LoadScene(levelToLoad);
             }

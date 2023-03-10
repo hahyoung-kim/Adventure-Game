@@ -99,7 +99,7 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("Key"))
         {
-            if (levelToLoad == "level5" || levelToLoad == "victory") {
+            if (levelToLoad == "victory") {
                 if (PublicVars.hasKey[0] == true && PublicVars.hasKey[1] == true) {
                     PublicVars.playcatcalls = false;
                     stop_playing = true;
@@ -136,6 +136,14 @@ public class Player : MonoBehaviour
                 // }
             }
         }
+        if(other.CompareTag("BigLion"))
+        {
+            // If no more heart left, then the player is dead.
+                Destroy(heart3);
+                Destroy(heart2);
+                Destroy(heart1);
+               SceneManager.LoadScene(endGame);
+        }        
     }
 
     public IEnumerator Catcalls() {
