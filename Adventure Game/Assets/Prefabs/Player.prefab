@@ -232,3 +232,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ed60cb1e42f4dd46b66637facaa83a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smallcatcall: {fileID: 0}
+  bigcatcall: {fileID: 0}
+  shootSound: {fileID: 0}
+  spawnPoint: {fileID: 0}
+  bulletPrefab: {fileID: 0}
