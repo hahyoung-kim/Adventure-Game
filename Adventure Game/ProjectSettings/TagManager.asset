@@ -12,6 +12,7 @@ TagManager:
   - CatHeart2
   - CatHeart3
   - BigLion
+  - score
   layers:
   - Default
   - TransparentFX

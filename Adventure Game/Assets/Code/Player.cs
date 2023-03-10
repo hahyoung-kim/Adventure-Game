@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public AudioClip smallcatcall;
     public AudioClip bigcatcall;
     public AudioClip shootSound;
+    public AudioClip hitSound;
     bool stop_playing = false;
     int bulletSpeed = 5;
     public Transform spawnPoint;
@@ -35,6 +36,7 @@ public class Player : MonoBehaviour
     GameObject heart1;
     GameObject heart2;
     GameObject heart3;
+    Renderer _renderer;
 
     void Start()
     {
@@ -47,11 +49,24 @@ public class Player : MonoBehaviour
         heart3 = GameObject.FindGameObjectWithTag("CatHeart3");
         mainCam = Camera.main;
        _audiosource = GetComponent<AudioSource>();
+       _renderer = GetComponent<Renderer>();
     //    for(int i = 0; i<3; i++){
     //         float gap = i*0.7f;
     //         totalLife.Add(Instantiate(heartIcon, new Vector3(470.4f+gap,147f, 0), Quaternion.identity));
     //     }
        StartCoroutine(Catcalls());
+    }
+
+    IEnumerator FlashRed() {
+
+       Color originalColor = _renderer.material.GetColor("_Color");
+        yield return new WaitForSeconds(10);
+        _renderer.material.shader = Shader.Find("_Color");
+        _renderer.material.SetColor("_Color", Color.green);
+
+        //Find the Specular shader and change its Color to red
+        _renderer.material.shader = Shader.Find("Specular");
+        _renderer.material.SetColor("_SpecColor", originalColor);
     }
 
     // Update is called once per frameo
@@ -97,6 +112,9 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if(other.CompareTag("Yarn")) {
+            _gameManager.AddYarn();
+        }
         if (other.CompareTag("Key"))
         {
             if (levelToLoad == "victory") {
@@ -116,9 +134,12 @@ public class Player : MonoBehaviour
         }
         if(other.CompareTag("Enemy"))
         {
+            _audiosource.PlayOneShot(hitSound); 
+            StartCoroutine(FlashRed());  
             // If no more heart left, then the player is dead.
             if (lifeCounter == 1) {
                 Destroy(heart1);
+                _gameManager.resetScore();
                SceneManager.LoadScene(endGame);
             } else {
                 // Instantiate(deadSound, transform.position, Quaternion.identity); // dead sound per collision
@@ -138,6 +159,7 @@ public class Player : MonoBehaviour
         }
         if(other.CompareTag("BigLion"))
         {
+            _audiosource.PlayOneShot(hitSound);   
             // If no more heart left, then the player is dead.
                 Destroy(heart3);
                 Destroy(heart2);

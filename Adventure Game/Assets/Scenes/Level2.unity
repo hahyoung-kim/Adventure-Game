@@ -3010,6 +3010,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1554774213}
     m_Modifications:
     - target: {fileID: 973494149644570488, guid: dd458ad8fd869984382a46ae181c7aac, type: 3}
+      propertyPath: hitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 7b412f43b480abc4cbf0431200913908, type: 3}
+    - target: {fileID: 973494149644570488, guid: dd458ad8fd869984382a46ae181c7aac, type: 3}
       propertyPath: levelToLoad
       value: level3
       objectReference: {fileID: 0}
