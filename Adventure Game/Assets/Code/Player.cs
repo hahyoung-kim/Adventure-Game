@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -22,13 +23,34 @@ public class Player : MonoBehaviour
     public Transform spawnPoint6;
     public GameObject bulletPrefab;
     public string levelToLoad;
+    public string currentLevel;
 
+    int lifeCounter; // player gets total 3 life
+    public GameObject heartIcon;
+    private List<GameObject> totalLife = new List<GameObject>(); // array to hold heart images
+    // public GameObject deadSound;
+    public string endGame = "GameOver";
+
+    GameManager _gameManager;
+    GameObject heart1;
+    GameObject heart2;
+    GameObject heart3;
 
     void Start()
     {
+        lifeCounter = 3;
         _newMeshAgent = GetComponent<NavMeshAgent>();
+        PublicVars.playcatcalls = true;
+        _gameManager = GameObject.FindObjectOfType<GameManager>();
+        heart1 = GameObject.FindGameObjectWithTag("CatHeart1");
+        heart2 = GameObject.FindGameObjectWithTag("CatHeart2");
+        heart3 = GameObject.FindGameObjectWithTag("CatHeart3");
         mainCam = Camera.main;
        _audiosource = GetComponent<AudioSource>();
+    //    for(int i = 0; i<3; i++){
+    //         float gap = i*0.7f;
+    //         totalLife.Add(Instantiate(heartIcon, new Vector3(470.4f+gap,147f, 0), Quaternion.identity));
+    //     }
        StartCoroutine(Catcalls());
     }
 
@@ -91,6 +113,28 @@ public class Player : MonoBehaviour
             int keyNum = Int32.Parse(other.name.Substring(3));
             Destroy(other.gameObject);
             PublicVars.hasKey[keyNum] = true;
+        }
+        if(other.CompareTag("Enemy"))
+        {
+            // If no more heart left, then the player is dead.
+            if (lifeCounter == 1) {
+                Destroy(heart1);
+               SceneManager.LoadScene(endGame);
+            } else {
+                // Instantiate(deadSound, transform.position, Quaternion.identity); // dead sound per collision
+                if(lifeCounter == 3) {
+                    Destroy(heart3);
+                }
+                else if(lifeCounter == 2) {
+                    Destroy(heart2);
+                }
+                lifeCounter = lifeCounter - 1; // when a zombie hits, lose 1 life
+                // totalLife.Clear();
+                // for(int i = 0; i<lifeCounter; i++){
+                //     float gap = i*0.7f;
+                //     totalLife.Add(Instantiate(heartIcon, new Vector3(216+gap,-50.43f, 0), Quaternion.identity));
+                // }
+            }
         }
     }
 

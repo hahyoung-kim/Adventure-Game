@@ -8,6 +8,9 @@ TagManager:
   - Enemy
   - Yarn
   - Fence
+  - CatHeart1
+  - CatHeart2
+  - CatHeart3
   layers:
   - Default
   - TransparentFX
