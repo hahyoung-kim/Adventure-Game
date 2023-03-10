@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 6059293637327336132}
   - component: {fileID: 5457732846044533393}
   - component: {fileID: 934907372690361860}
-  - component: {fileID: 8258188739594735103}
+  - component: {fileID: 5387723428306233310}
   - component: {fileID: 6969486837858930471}
   - component: {fileID: 4665461654702383733}
   - component: {fileID: 2709943631492168316}
@@ -144,7 +144,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8269301729873247771}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &934907372690361860
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -187,8 +187,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &8258188739594735103
-CapsuleCollider:
+--- !u!65 &5387723428306233310
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -197,10 +197,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.7
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Size: {x: 0.75, y: 1.5, z: 1.5}
+  m_Center: {x: 0, y: -0.2, z: 0}
 --- !u!195 &6969486837858930471
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -211,17 +210,17 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.2
-  m_Speed: 2
+  m_Speed: 6
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 240
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 1
   m_BaseOffset: 1
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 13
   m_ObstacleAvoidanceType: 4
 --- !u!114 &4665461654702383733
 MonoBehaviour:
@@ -236,7 +235,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 6969486837858930471}
-  Player: {fileID: 3828734321334263499, guid: 11b68c8226620354c9c45d53856ce160, type: 3}
+  enemytype: dog
+  dogwhimper: {fileID: 8300000, guid: e7597de2319f98b4d8c35e309c410b6a, type: 3}
+  dogbark: {fileID: 8300000, guid: 3ebb0b6b9b065db4ab0d9e938a21320e, type: 3}
+  lionroar: {fileID: 8300000, guid: f1ce5bd240809a446aa53bcf91824fcf, type: 3}
+  lionwhimper: {fileID: 8300000, guid: 194d77fcef0a04345b6d5ef55086c7ee, type: 3}
 --- !u!54 &2709943631492168316
 Rigidbody:
   m_ObjectHideFlags: 0
